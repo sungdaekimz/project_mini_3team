@@ -36,7 +36,7 @@ public class StoreDao {
 		list.add(new Store(12, "스시루", "신논현역", "4", "일식", "주학년", true, 5, 0));
 
 		list.add(new Store(13, "호족반", "논현역", "1", "한식", "서은광", true, 5, 0));
-		list.add(new Store(14, "역삼갈비", "논현역", "2", "한식", "김성대", true, 5, 0));
+		list.add(new Store(14, "역삼갈비", "논현역", "2", "한식", "김성대", true, 5, 1));
 		list.add(new Store(15, "경복궁", "강남역", "3", "한식", "이창섭", true, 5, 0));
 		list.add(new Store(16, "광화문", "신논현역", "4", "한식", "유강민", true, 5, 0));
 
