@@ -20,6 +20,7 @@ import javax.swing.JTextField;
 import com.kh.mini.model.dao.FoodDao;
 import com.kh.mini.model.dao.StoreDao;
 import com.kh.mini.model.vo.Store;
+import com.kh.mini.view.AppMenu;
 
 public class Reserve implements ActionListener {
 	JFrame frm;
@@ -150,12 +151,17 @@ public class Reserve implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		if (arg0.getSource() == btn1) {
 			ClickButton_reserve(arg0);
+			frm.setVisible(false);
+			new AppMenu();
+			return;
 		}
 
 		if (arg0.getSource() == btn2) {
 			sd.clearReserveList();
 			new SelectStore();
 			frm.setVisible(false);
+			new AppMenu();
+			return;
 		}
 
 	}
