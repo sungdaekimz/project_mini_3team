@@ -248,11 +248,6 @@ class ReviewCollect extends JFrame {
 		label.setFont(font);
 		label.setBounds(165, 35, 450, 50);
 
-		b1 = new JButton("검색");
-		b1.setBounds(300, 100, 100, 30);
-		b1.setBackground(Color.gray);
-		b1.setForeground(Color.white);
-
 		b2 = new JButton("홈");
 		b2.setBounds(170, 490, 100, 30);
 		b2.setBackground(Color.gray);
@@ -290,7 +285,6 @@ class ReviewCollect extends JFrame {
 		table.setBounds(40, 170, 360, 300);
 
 		c.add(label);
-		c.add(b1);
 		c.add(b2);
 		c.add(lb1);
 		c.add(lb2);
@@ -300,18 +294,6 @@ class ReviewCollect extends JFrame {
 
 		this.setVisible(true);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-
-		b1.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				setVisible(false);
-				new SearchReview().searchReview();
-				return;
-			}
-
-		});
 
 		b2.addActionListener(new ActionListener() {
 
@@ -325,77 +307,6 @@ class ReviewCollect extends JFrame {
 
 		});
 
-		// System.out.println("후기 전체 조회"); b1: 나의 후기
-
 	}
 
-}
-
-class SearchReview extends JFrame {
-
-	Scanner sc = new Scanner(System.in);
-	private AppManager am = new AppManager();
-
-	public void searchReview() {
-
-		setTitle("후기 검색");
-		setSize(450, 600);
-		setResizable(false);
-		setLocationRelativeTo(null);
-
-		Container c1 = getContentPane();
-		c1.setLayout(null);
-
-		try {
-			this.setIconImage(ImageIO.read(new File("image/배고프조로고.png")));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		ArrayList<StoreReview> rList = new ArrayList<StoreReview>();
-
-		Font font = new Font("", Font.BOLD, 20);
-		JLabel l2 = new JLabel("가게 이름을 입력하세요.");
-		l2.setFont(font);
-		l2.setBounds(100, 100, 250, 30);
-
-		JTextField tf = new JTextField();
-		tf.setBounds(100, 150, 230, 30);
-
-		JButton b4 = new JButton("검색");// 검색버튼
-		b4.setBounds(160, 200, 100, 30);
-		b4.setBackground(Color.gray);
-		b4.setForeground(Color.white);
-
-//		ArrayList<StoreReview> sList = new ArrayList<StoreReview>();
-//
-//		for (int i = 0; i < sList.size(); i++) {
-//			if (rList.get(i).getStoreName().contains(tf.getText())) {
-//				sList.add(rList.get(i));
-//			}
-//		}
-//
-//		String[] fl = new String[] { "번호", "가게", "후기" };
-//		DefaultTableModel model = new DefaultTableModel(fl, 0);
-//
-//		JTable table = new JTable(model);
-//		JScrollPane sp = new JScrollPane(table);
-//
-//		if (sList.isEmpty()) {
-//			JLabel l3 = new JLabel("검색 결과가 없습니다.");
-//		} else {
-//			for (int i = 0; i < sList.size(); i++) {
-//				System.out.println(sList.get(i));
-//			}
-//		}
-
-		c1.add(l2);
-		c1.add(b4);
-		c1.add(tf);
-
-		this.setVisible(true);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-
-	}
 }

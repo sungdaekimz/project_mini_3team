@@ -49,7 +49,7 @@ public class StoreReview extends Store {
 
 	@Override
 	public String toString() {
-		return "==" + getStoreName() + "이용자의 후기입니다.==\n" + "별점: " + getStoreGrade() + "\n작성일: " +"reviewDate"+ "\n후기: "+storeReview + "\n";
+		return "==" + getStoreName() + "이용자의 후기입니다.==\n" + "별점: " + getStoreGrade() + "\n작성일: " +reviewDate+ "\n후기: "+storeReview + "\n";
 	}
 
 }
