@@ -6,10 +6,12 @@ import java.util.Comparator;
 
 import com.kh.mini.model.vo.Store;
 import com.kh.mini.model.vo.StoreReview;
+import com.kh.mini.model.vo.User;
 
 public class StoreDao {
 
 	private static ArrayList<Store> list = new ArrayList<Store>();
+	private static ArrayList<Store> reserveList = new ArrayList<Store>();
 	private static ArrayList<StoreReview> reviewList = new ArrayList<StoreReview>();
 
 	public StoreDao() {
@@ -18,25 +20,25 @@ public class StoreDao {
 
 	static {
 
-		list.add(new Store(1, "다운타우너", "논현역", "1", "양식", "이예진", true, 5, 1));
-		list.add(new Store(2, "브루클린", "논현역", "2", "양식", "이예진", true, 5, 0));
-		list.add(new Store(3, "쉐이크쉑", "강남역", "3", "양식", "이예진", true, 5, 0));
-		list.add(new Store(4, "바스버거", "신논현역", "4", "양식", "이예진", true, 5, 0));
+		list.add(new Store(1, "다운타우너", "논현역", "1", "양식", "이태민", true, 5, 0));
+		list.add(new Store(2, "브루클린", "논현역", "2", "양식", "김철수", true, 5, 0));
+		list.add(new Store(3, "쉐이크쉑", "강남역", "3", "양식", "김영희", true, 5, 0));
+		list.add(new Store(4, "바스버거", "신논현역", "4", "양식", "한강", true, 5, 0));
 
-		list.add(new Store(5, "중화루", "논현역", "1", "중식", "이예진", true, 5, 0));
-		list.add(new Store(6, "금장각", "논현역", "2", "중식", "이예진", true, 5, 0));
-		list.add(new Store(7, "화양루", "강남역", "3", "중식", "이예진", true, 5, 0));
-		list.add(new Store(8, "중식루", "신논현역", "4", "중식", "이예진", true, 5, 0));
+		list.add(new Store(5, "중화루", "논현역", "1", "중식", "최진영", true, 5, 0));
+		list.add(new Store(6, "금장각", "논현역", "2", "중식", "향돌", true, 5, 0));
+		list.add(new Store(7, "화양루", "강남역", "3", "중식", "육성재", true, 5, 0));
+		list.add(new Store(8, "중식루", "신논현역", "4", "중식", "나재민", true, 5, 0));
 
-		list.add(new Store(9, "우오하나", "논현역", "1", "일식", "이예진", true, 5, 0));
-		list.add(new Store(10, "은행골", "논현역", "2", "일식", "yejin", true, 3, 0));
-		list.add(new Store(11, "청담이상", "강남역", "3", "일식", "이예진", true, 5, 0));
-		list.add(new Store(12, "스시루", "신논현역", "4", "일식", "이예진", true, 5, 0));
+		list.add(new Store(9, "우오하나", "논현역", "1", "일식", "현승희", true, 5, 0));
+		list.add(new Store(10, "은행골", "논현역", "2", "일식", "이예진", true, 3, 0));
+		list.add(new Store(11, "청담이상", "강남역", "3", "일식", "아린", true, 5, 0));
+		list.add(new Store(12, "스시루", "신논현역", "4", "일식", "주학년", true, 5, 0));
 
-		list.add(new Store(13, "호족반", "논현역", "1", "한식", "이예진", true, 5, 0));
+		list.add(new Store(13, "호족반", "논현역", "1", "한식", "서은광", true, 5, 0));
 		list.add(new Store(14, "역삼갈비", "논현역", "2", "한식", "김성대", true, 5, 0));
-		list.add(new Store(15, "경복궁", "강남역", "3", "한식", "이예진", true, 5, 0));
-		list.add(new Store(16, "광화문", "신논현역", "4", "한식", "이예진", true, 5, 0));
+		list.add(new Store(15, "경복궁", "강남역", "3", "한식", "이창섭", true, 5, 0));
+		list.add(new Store(16, "광화문", "신논현역", "4", "한식", "유강민", true, 5, 0));
 
 		System.out.println(list);
 		System.out.println("가게 리스트 생성 완료!");
@@ -49,10 +51,16 @@ public class StoreDao {
 		return list.get(list.size() - 1).getStoreNo();
 	}
 
-	// 1. 게시글 쓰기
+	// 1. 가게 추가
 	public void writeStore(Store store) {
 		list.add(store);
 	}
+	
+	// 1_1. 예약할 가게 정보를 예약 리스트에 추가
+	public void writeReserveStore(Store store) {
+		reserveList.add(store);
+	}
+
 
 	// 2. 전체 가게 보기
 	public ArrayList<Store> displayAllList() {
@@ -86,7 +94,30 @@ public class StoreDao {
 		}
 		return storeName;
 	}
+	
+	// 3. 가게 유형별로 검색
+	public ArrayList<Store> searchStore(String type) {
 
+		ArrayList<Store> searchList = new ArrayList<Store>();
+
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i).getStoreType().contains(type)) {
+				searchList.add(list.get(i));
+
+			}
+		}
+
+		return searchList;
+	}
+	
+	// 4. 예약한 가게 보기
+		public ArrayList<Store> displayReserveList() {
+
+			return reserveList;
+		}
+
+	
+	// -------------------- 여기부터 삭제해도 될런지?
 	// 3. 조회수 올리기
 	public void upReadCount(int no) {
 		for (int i = 0; i < list.size(); i++) {
@@ -149,10 +180,10 @@ public class StoreDao {
 
 		return searchList;
 	}*/
+	// --------------------
 	
 	
-	// --------
-	public int getLastReviewCount(String sName) {	
+	public int getLastReviewCount(String sName) {		// 가게 마지막 방문번호 얻어오기 // 필요없어짐.
 		
 		ArrayList<StoreReview> lastRC = new ArrayList<StoreReview>();
 		
@@ -167,8 +198,6 @@ public class StoreDao {
 		}
 		return lastRC.get(lastRC.size()-1).getReviewCount();
 	}
-	
-	
 	
 	public void addReview(StoreReview store) {
 		reviewList.add(store);
@@ -212,8 +241,8 @@ public class StoreDao {
 		System.out.println(avgStoreGrade);
 	}
 
+	
 	// 이름순정렬
-
 	public ArrayList<Store> displayStore_name() {
 
 		Store Store = null;
