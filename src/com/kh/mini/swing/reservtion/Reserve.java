@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.Iterator;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
@@ -16,11 +17,17 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import com.kh.mini.model.dao.FoodDao;
+import com.kh.mini.model.dao.StoreDao;
+import com.kh.mini.model.vo.Store;
+
 public class Reserve implements ActionListener {
 	JFrame frm;
 	JCheckBox f, t;
 	JLabel time, numPeople, menu, name;
 	JButton btn1, btn2;
+	StoreDao sd = new StoreDao();
+	FoodDao fd = new FoodDao();
 
 	public Reserve() {
 		frm = new JFrame("방문 및 포장 예약");
@@ -36,23 +43,33 @@ public class Reserve implements ActionListener {
 			e.printStackTrace();
 		}
 
+		Store store = sd.displayReserveList().get(0);
+
 		Font f1 = new Font("돋움", Font.BOLD, 20);
 		Font f2 = new Font("Serif", Font.BOLD, 36);
 		Font f3 = new Font("돋움", Font.BOLD, 15);
 
 		JLabel main = new JLabel();
-		main = new JLabel("역삼 갈비");
-		main.setBounds(125, 30, 200, 40);
+		main = new JLabel(store.getStoreName());
+		main.setBounds(-10, 30, 450, 40);
 		main.setFont(f2);
+		main.setHorizontalAlignment(JLabel.CENTER);
 		frm.getContentPane().add(main);
 
 		JLabel menu = new JLabel();
 		menu = new JLabel();
-		menu.setText(
-				"<HTML><body><center>Menu <br>1. 돼지왕갈비   15000원<br>2. 생삼겹살    14000원<br>3. 차돌된장    6000원<br>4. 김치짜글이    7000원</center></body></HTML>");
+		String menuStr = "";
+		Iterator it = fd.displayAllList(store.getStoreName()).iterator();
+		while (it.hasNext()) {
+			menuStr += it.next().toString();
+			menuStr += "<br>";
+		}
 
-		menu.setBounds(110, 80, 300, 200);
+		menu.setText("<HTML><body><center>Menu <br>" + menuStr + "</center></body></HTML>");
+
+		menu.setBounds(-10, 80, 450, 200);
 		menu.setFont(new Font("Serif", Font.BOLD, 20));
+		menu.setHorizontalAlignment(JLabel.CENTER);
 		frm.getContentPane().add(menu);
 
 		f = new JCheckBox("매장 식사");
@@ -69,7 +86,7 @@ public class Reserve implements ActionListener {
 
 		String[] time1 = { "12:00", "13:00", "14:00", "15:00", "18:00", "17:00" };
 		JComboBox timeCombo = new JComboBox(time1);
-		timeCombo.setBounds(180, 310, 100, 30);
+		timeCombo.setBounds(180, 310, 160, 30);
 		frm.getContentPane().add(timeCombo);
 
 		numPeople = new JLabel("인원 수 :");
@@ -79,17 +96,27 @@ public class Reserve implements ActionListener {
 
 		String[] num = { "1명", "2명", "3명", "4명", "5명 이상", "미정" };
 		JComboBox numCombo = new JComboBox(num);
-		numCombo.setBounds(180, 350, 100, 30);
+		numCombo.setBounds(180, 350, 160, 30);
 		frm.getContentPane().add(numCombo);
+
+		int i = 0;
+		String[] menu1 = new String[fd.displayAllList(store.getStoreName()).size()];
+
+		it = fd.displayAllList(store.getStoreName()).iterator();
+		while (it.hasNext()) {
+			menuStr = "";
+			menuStr = it.next().toString();
+			menu1[i++] = menuStr;
+		}
 
 		menu = new JLabel("메뉴 :");
 		menu.setBounds(80, 390, 100, 30);
 		menu.setFont(f3);
 		frm.getContentPane().add(menu);
 
-		String[] menu1 = { "1. 돼지왕갈비", "2. 생삼겹살", "3. 차돌된장", "4. 김치짜글이" };
+		// String[] menu1 = { menuStr };
 		JComboBox menuList = new JComboBox(menu1);
-		menuList.setBounds(180, 390, 100, 30);
+		menuList.setBounds(180, 390, 160, 30);
 		frm.getContentPane().add(menuList);
 
 		name = new JLabel("예약자 이름 :");
@@ -98,7 +125,7 @@ public class Reserve implements ActionListener {
 		frm.getContentPane().add(name);
 
 		JTextField txt = new JTextField();
-		txt.setBounds(180, 430, 100, 30);
+		txt.setBounds(180, 430, 160, 30);
 		frm.getContentPane().add(txt);
 
 		btn1 = new JButton("예약");
@@ -126,6 +153,7 @@ public class Reserve implements ActionListener {
 		}
 
 		if (arg0.getSource() == btn2) {
+			sd.clearReserveList();
 			new SelectStore();
 			frm.setVisible(false);
 		}
@@ -133,7 +161,7 @@ public class Reserve implements ActionListener {
 	}
 
 	private void ClickButton_reserve(ActionEvent arg0) {
-		
+
 		JOptionPane.showMessageDialog(null, "예약을 완료하였습니다.");
 	}
 

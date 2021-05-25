@@ -115,6 +115,12 @@ public class StoreDao {
 
 			return reserveList;
 		}
+		
+	// 4_1. 예약한 가게 초기화
+	public void clearReserveList() {
+
+		reserveList.clear();
+	}
 
 	
 	// -------------------- 여기부터 삭제해도 될런지?
