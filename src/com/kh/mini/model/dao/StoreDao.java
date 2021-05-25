@@ -231,7 +231,7 @@ public class StoreDao {
 		}else {
 			totalStoreGrade = storeGrade*(visitCount-1)+star;
 		}
-		double avgStoreGrade = totalStoreGrade/(double)(visitCount);
+		double avgStoreGrade = totalStoreGrade/(double)(visitCount+1);
 		
 		for (int i = 0; i < list.size(); i++) {
 			if (list.get(i).getStoreName().equals(sName)) {

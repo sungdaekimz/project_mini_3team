@@ -164,7 +164,7 @@ public class AppMenu extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new MyPageSwing().reviewCollect();
+				new MyPageSwing().myMain();
 			}
 
 		});

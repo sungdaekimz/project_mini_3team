@@ -324,18 +324,18 @@ public class AppManager extends JFrame {
 							public void actionPerformed(ActionEvent e) {
 								String text = ta.getText();
 								Date today = new Date();
-								SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd (E요일)");
-								String review = "작성일: " + sdf.format(today) + "\n" + "후기: " + text;
+								SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd (E)");
+								String review = text;
 
 								// ******
 
 								int ans = JOptionPane.showConfirmDialog(null,
-										"[==내용을 확인해주세요.==]\n" + "별점: " + star + "\n" + review, "확인",
+										"[==내용을 확인해주세요.==]\n" + "별점: " + star + "\n" + "작성일: " + sdf.format(today) + "\n"+"후기: "+review, "확인",
 										JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
 								if (ans == JOptionPane.YES_OPTION) {
 									reviewCount++;
-									sd.addReview(new StoreReview(sName, star, review, reviewCount));
+									sd.addReview(new StoreReview(sName, star, review, reviewCount, sdf.format(today)));
 									JOptionPane.showMessageDialog(null, "소중한 후기 감사합니다~!");
 									setVisible(false);
 									new AppMenu();
