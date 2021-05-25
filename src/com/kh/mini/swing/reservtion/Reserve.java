@@ -16,6 +16,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import com.kh.mini.view.AppMenu;
+
 public class Reserve implements ActionListener {
 	JFrame frm;
 	JCheckBox f, t;
@@ -123,11 +125,16 @@ public class Reserve implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		if (arg0.getSource() == btn1) {
 			ClickButton_reserve(arg0);
+			frm.setVisible(false);
+			new AppMenu();
+			return;
 		}
 
 		if (arg0.getSource() == btn2) {
 			new SelectStore();
 			frm.setVisible(false);
+			new AppMenu();
+			return;
 		}
 
 	}
