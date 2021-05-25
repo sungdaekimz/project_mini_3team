@@ -18,7 +18,7 @@ public class StoreDao {
 
 	static {
 
-		list.add(new Store(1, "다운타우너", "논현역", "1", "양식", "이예진", true, 5, 0));
+		list.add(new Store(1, "다운타우너", "논현역", "1", "양식", "이예진", true, 5, 1));
 		list.add(new Store(2, "브루클린", "논현역", "2", "양식", "이예진", true, 5, 0));
 		list.add(new Store(3, "쉐이크쉑", "강남역", "3", "양식", "이예진", true, 5, 0));
 		list.add(new Store(4, "바스버거", "신논현역", "4", "양식", "이예진", true, 5, 0));
@@ -152,7 +152,7 @@ public class StoreDao {
 	
 	
 	// --------
-	public int getLastReviewCount(String sName) {		// 가게 마지막 방문번호 얻어오기 // 필요없어짐.
+	public int getLastReviewCount(String sName) {	
 		
 		ArrayList<StoreReview> lastRC = new ArrayList<StoreReview>();
 		
@@ -202,7 +202,7 @@ public class StoreDao {
 		}else {
 			totalStoreGrade = storeGrade*(visitCount-1)+star;
 		}
-		double avgStoreGrade = totalStoreGrade/(double)(visitCount);
+		double avgStoreGrade = totalStoreGrade/(double)(visitCount+1);
 		
 		for (int i = 0; i < list.size(); i++) {
 			if (list.get(i).getStoreName().equals(sName)) {
