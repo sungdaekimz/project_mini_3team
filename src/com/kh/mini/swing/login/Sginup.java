@@ -8,7 +8,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
@@ -19,19 +18,19 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import com.kh.mini.model.dao.UserDao;
 import com.kh.mini.model.vo.User;
 
 public class Sginup implements ActionListener {
-	private ArrayList<User> list = new ArrayList<>();
+//	private ArrayList<User> list = new ArrayList<>();
 
+	UserDao ud = new UserDao();
 	JTextField jtfId, jpfPwd, jtfName, jtfPhone, jtfAge;
 	JButton btn1, btn2, btn3;
 	JCheckBox u, p, a, w, m;
 	JFrame frm;
 	
 	public Sginup() {
-		User us = new User("user1", "pass1", "yejin", "010", 28, 'F', 'U');
-		list.add(us);
 
 		// 프레임생성
 		frm = new JFrame("회원가입");
@@ -50,6 +49,7 @@ public class Sginup implements ActionListener {
 
 		Font f1 = new Font("돋움", Font.BOLD, 20);
 		Font f2 = new Font("돋움", Font.BOLD, 25);
+		
 		// 일반회원, 사업자, 관리자 체크박스생성
 		u = new JCheckBox("일반회원");
 		u.setBounds(80, 30, 80, 30);
@@ -176,13 +176,19 @@ public class Sginup implements ActionListener {
 
 	protected void ClickButton_doubleCheck(ActionEvent arg0) {
 		String id = jtfId.getText();
+		boolean check = false;
+		ud.readFileUser();
 
-		for (int i = 0; i < list.size(); i++) {
-			if (id.equals(list.get(i).getUserId())) {
-				JOptionPane.showMessageDialog(null, "중복된 아이디 입니다!\n다시 입력해주세요!");
-			} else if (!(id.equals(list.get(i).getUserId()))) {
-				JOptionPane.showMessageDialog(null, "사용가능한 아이디 입니다.");
+		for (int i = 0; i < ud.displayAllList().size(); i++) {
+			if (id.equals(ud.displayAllList().get(i).getUserId())) {
+				check = true;
 			}
+		}
+		
+		if (check == true) {
+			JOptionPane.showMessageDialog(null, "중복된 아이디 입니다!\n다시 입력해주세요!");
+		} else {
+			JOptionPane.showMessageDialog(null, "사용가능한 아이디 입니다.");
 		}
 	}
 
@@ -228,10 +234,10 @@ public class Sginup implements ActionListener {
 		
 		User mem = new User(id, pwd, name, phone, age, gender, userRole);
 		
-		list.add(mem);
+		ud.writeUser(mem);
 		
 		
-		JOptionPane.showMessageDialog(null, "성공적으로 회원가입되었습니다.");
+		JOptionPane.showMessageDialog(null, "성공적으로 회원가입 되었습니다.");
 		
 		System.out.println(mem.toString());
 		new SwingLogin();

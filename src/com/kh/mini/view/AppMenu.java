@@ -21,6 +21,7 @@ import com.kh.mini.controller.AppManager;
 import com.kh.mini.model.dao.StoreDao;
 import com.kh.mini.model.dao.UserDao;
 import com.kh.mini.model.vo.Store;
+import com.kh.mini.swing.reservtion.SelectStore;
 
 //AppMemu extends JFrame
 
@@ -120,6 +121,15 @@ public class AppMenu extends JFrame {
 			}
 
 		});
+		
+		btn3.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				seletStore();
+			}
+
+		});
 
 		btn4.addActionListener(new ActionListener() {
 
@@ -154,7 +164,7 @@ public class AppMenu extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// 마이 페이지 이동
+				new MyPageSwing().reviewCollect();
 			}
 
 		});
@@ -163,13 +173,11 @@ public class AppMenu extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ownerSubMenu();
-				/*
-				if (ud.readFileUserType(ud.displayLoginUser().getUserId(), 'P') == true) {
+				if (ud.displayLoginUser().getUserType() == 'P') {
 					ownerSubMenu();
 				} else {
 					JOptionPane.showMessageDialog(getParent(), "사장님 회원만 접근할 수 있습니다.", "접근 경고", JOptionPane.WARNING_MESSAGE);
-				}*/
+				}
 				
 			}
 
@@ -179,13 +187,11 @@ public class AppMenu extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				adminSubMenu();
-				/*
-				if (ud.readFileUserType(ud.displayLoginUser().getUserId(), 'A') == true) {
+				if (ud.displayLoginUser().getUserType() == 'A') {
 					adminSubMenu();
 				} else {
 					JOptionPane.showMessageDialog(getParent(), "관리자만 접근할 수 있습니다.", "접근 경고", JOptionPane.WARNING_MESSAGE);
-				}*/
+				}
 				
 			}
 
@@ -204,17 +210,23 @@ public class AppMenu extends JFrame {
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+	}	
+	
+	private void displayStore_name() {
+		this.setVisible(false);
+		new DisplayStore_name();
+		return;
 	}
-
+	
 	private void displayStore_grade() {
 		this.setVisible(false);
 		new DisplayStore_grade();
 		return;
 	}
 	
-	private void displayStore_name() {
+	protected void seletStore() {
 		this.setVisible(false);
-		new DisplayStore_name();
+		new SelectStore();
 		return;
 	}
 

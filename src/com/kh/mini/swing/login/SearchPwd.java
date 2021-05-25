@@ -4,14 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.StringTokenizer;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
@@ -20,20 +14,18 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import com.kh.mini.model.vo.User;
+import com.kh.mini.model.dao.UserDao;
 
 public class SearchPwd implements ActionListener {
-	private ArrayList<User> list = new ArrayList<>();
 
+	UserDao ud = new UserDao();
 	JTextField jtfId, jtfName, jtfPhone;
 	JButton btn1, btn2;
 
 	public SearchPwd() {
-		User us = new User("user1", "pass1", "yejin", "010", 28, 'F', 'U');
-		list.add(us);
 
 		// 프레임생성
-		JFrame frm = new JFrame("비밀번호찾기");
+		JFrame frm = new JFrame("비밀번호 찾기");
 		frm.setSize(450, 650);
 		frm.setLocationRelativeTo(null);
 		frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -136,64 +128,16 @@ public class SearchPwd implements ActionListener {
 		String name = jtfName.getText();
 		String phone = jtfPhone.getText();
 
-		try {
-			FileReader fr = new FileReader("sginupWriter.txt");
-			BufferedReader br = new BufferedReader(fr);
-
-			String userinfo = br.readLine();
-			StringTokenizer st = new StringTokenizer(userinfo, ",");
-			String userId = null, userPwd = null, userName = null, userPhone = null;
-			int	userAge = 0;
-			char userGender = '\u0000', userType = '\u0000';
-			int i = 0;
-			while (st.hasMoreTokens()) {
-				String info = st.nextToken();
-
-				switch (i) {
-				case 0:
-					userId = info;
-					break;
-				case 1:
-					userPwd = info;
-					break;
-				case 2:
-					userName = info;
-					break;
-				case 3:
-					userPhone = info;
-					break;
-				case 4:
-					userAge = Integer.valueOf(info);
-					break;
-				case 5:
-					userGender = info.charAt(0);
-				case 6:
-					userType = info.charAt(0);
-					break;
-				}
-				i++;
-			}
-
-			i=0;
-			User mem = new User(userId, userPwd, userName, userPhone, userAge, userGender, userType);
-			list.add(mem);
-			br.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ud.readFileUser();
 		
-		for (int k = 0; k < list.size(); k++) {
-			if (id.equals(list.get(k).getUserId()) && name.equals(list.get(k).getUserName())
-					&& phone.equals(list.get(k).getUserPhone())) {
-				JOptionPane.showMessageDialog(null, "회원님의 비밀번호는\n" + list.get(k).getUserPwd() + " 입니다.");
+		for (int k = 0; k < ud.displayAllList().size(); k++) {
+			if (id.equals(ud.displayAllList().get(k).getUserId()) && name.equals(ud.displayAllList().get(k).getUserName())
+					&& phone.equals(ud.displayAllList().get(k).getUserPhone())) {
+				JOptionPane.showMessageDialog(null, "회원님의 비밀번호는\n" + ud.displayAllList().get(k).getUserPwd() + " 입니다.");
 				return;
 			} 
-			if (id.equals(list.get(k).getUserId()) && name.equals(list.get(k).getUserName())
-					&& phone.equals(list.get(k).getUserPhone())) {
+			if (id.equals(ud.displayAllList().get(k).getUserId()) && name.equals(ud.displayAllList().get(k).getUserName())
+					&& phone.equals(ud.displayAllList().get(k).getUserPhone())) {
 				JOptionPane.showMessageDialog(null, "일치하는 정보가 없습니다.\n다시 입력해주세요!");
 				return;
 			}

@@ -5,12 +5,8 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.StringTokenizer;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -23,12 +19,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import com.kh.mini.model.dao.UserDao;
-import com.kh.mini.model.vo.User;
 import com.kh.mini.view.AppMenu;
 
 public class SwingLogin implements ActionListener {
-//	private ArrayList<User> list = new ArrayList<>();
-	// private AppMenu appMenu = new AppMenu();
 
 	UserDao ud = new UserDao();
 	JButton btn1, btn2, btn3, btn4;
@@ -37,8 +30,6 @@ public class SwingLogin implements ActionListener {
 	JFrame frm;
 
 	public SwingLogin() {
-//		User us = new User("user1", "pass1", "yejin", "010", 28, 'F', 'U');
-//		list.add(us);
 
 		// 프레임생성
 		frm = new JFrame("로그인");
