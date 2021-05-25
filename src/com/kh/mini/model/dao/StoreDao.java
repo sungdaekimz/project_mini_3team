@@ -18,25 +18,25 @@ public class StoreDao {
 
 	static {
 
-		list.add(new Store(1, "다운타우너", "논현역", "1", "양식", "이예진", true, 5, 0));
-		list.add(new Store(2, "브루클린", "논현역", "2", "양식", "이예진", true, 5, 0));
-		list.add(new Store(3, "쉐이크쉑", "강남역", "3", "양식", "이예진", true, 5, 0));
-		list.add(new Store(4, "바스버거", "신논현역", "4", "양식", "이예진", true, 5, 0));
+		list.add(new Store(1, "다운타우너", "논현역", "02-1234-5678", "양식", "이예진", true, 5, 0));
+		list.add(new Store(2, "브루클린", "논현역", "02-4321-5678", "양식", "이예진", true, 2, 0));
+		list.add(new Store(3, "쉐이크쉑", "강남역", "02-2334-5667", "양식", "이예진", true, 1, 0));
+		list.add(new Store(4, "바스버거", "신논현역", "02-3454-5098", "양식", "이예진", true, 3, 0));
 
-		list.add(new Store(5, "중화루", "논현역", "1", "중식", "이예진", true, 5, 0));
-		list.add(new Store(6, "금장각", "논현역", "2", "중식", "이예진", true, 5, 0));
-		list.add(new Store(7, "화양루", "강남역", "3", "중식", "이예진", true, 5, 0));
-		list.add(new Store(8, "중식루", "신논현역", "4", "중식", "이예진", true, 5, 0));
+		list.add(new Store(5, "웍셔너리", "논현역", "02-1432-5648", "중식", "이예진", true, 4, 0));
+		list.add(new Store(6, "명성관", "논현역", "02-1112-5678", "중식", "이예진", true, 3, 0));
+		list.add(new Store(7, "화양루", "강남역", "02-6443-0999", "중식", "이예진", true, 3.5, 0));
+		list.add(new Store(8, "중식루", "신논현역", "02-0128-8362", "중식", "이예진", true, 1, 0));
 
-		list.add(new Store(9, "우오하나", "논현역", "1", "일식", "이예진", true, 5, 0));
-		list.add(new Store(10, "은행골", "논현역", "2", "일식", "yejin", true, 3, 0));
-		list.add(new Store(11, "청담이상", "강남역", "3", "일식", "이예진", true, 5, 0));
-		list.add(new Store(12, "스시루", "신논현역", "4", "일식", "이예진", true, 5, 0));
+		list.add(new Store(9, "우오하나", "논현역", "02-0148-1127", "일식", "이예진", true, 5, 0));
+		list.add(new Store(10, "은행골", "논현역", "02-3883-3525", "일식", "yejin", true, 3, 0));
+		list.add(new Store(11, "청담이상", "강남역", "02-9223-5556", "일식", "이예진", true, 2.1, 0));
+		list.add(new Store(12, "희로", "신논현역", "02-0642-2447", "일식", "이예진", true, 5, 0));
 
-		list.add(new Store(13, "호족반", "논현역", "1", "한식", "이예진", true, 5, 0));
-		list.add(new Store(14, "역삼갈비", "논현역", "2", "한식", "김성대", true, 5, 0));
-		list.add(new Store(15, "경복궁", "강남역", "3", "한식", "이예진", true, 5, 0));
-		list.add(new Store(16, "광화문", "신논현역", "4", "한식", "이예진", true, 5, 0));
+		list.add(new Store(13, "호족반", "논현역", "02-0913-2347", "한식", "이예진", true, 5, 0));
+		list.add(new Store(14, "역삼갈비", "논현역", "02-2291-2231", "한식", "김성대", true, 2, 0));
+		list.add(new Store(15, "경복궁", "강남역", "02-1939-6450", "한식", "이예진", true, 2, 0));
+		list.add(new Store(16, "오라방", "신논현역", "02-2401-5441", "한식", "이예진", true, 5, 0));
 
 		System.out.println(list);
 		System.out.println("가게 리스트 생성 완료!");
@@ -228,7 +228,8 @@ public class StoreDao {
 
 		Collections.sort(list, comparator);
 		for (int i = 0; i < list.size(); i++) {
-			System.out.println(list.get(i).getStoreName());
+			System.out.println(list.get(i).getStoreName()+list.get(i).getStoreAddr());
+			//System.out.println(list.get(i).getStoreAddr());
 			Store = list.get(i);
 		}
 		return list;
@@ -249,7 +250,7 @@ public class StoreDao {
 		Collections.sort(list, comparator);
 
 		for (int i = 0; i < list.size(); i++) {
-			System.out.println(list.get(i).getStoreName());
+			System.out.println(list.get(i).getStoreName()+list.get(i).getStoreAddr());
 			Store = list.get(i);
 		}
 		return list;

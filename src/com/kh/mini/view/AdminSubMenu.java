@@ -23,6 +23,7 @@ public class AdminSubMenu extends JFrame {
 
 	JButton btn1, btn2, btn3;
 	JPanel panel;
+	
 
 	public AdminSubMenu() {
 		this.setTitle("관리자 페이지");
@@ -123,6 +124,7 @@ public class AdminSubMenu extends JFrame {
 
 class DeleteStore extends JFrame {
 
+	private static String sName = "";
 	private StoreDao sd = new StoreDao();
 	ArrayList<Store> store = sd.displayAllList();
 
@@ -165,32 +167,53 @@ class DeleteStore extends JFrame {
 				int result = JOptionPane.showConfirmDialog(getParent(), "정말로 삭제하시겠습니까?", "삭제 확인",
 						JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 
+				 
+
+				ArrayList<Store> searchStore = new ArrayList<Store>();
+										
 				for (int i = 0; i < store.size(); i++) {
 
-					if (deleteName.equals(store.get(i).getStoreName())) {
+					if (store.get(i).getStoreName().contains(deleteName)) {
 
-						if (result == JOptionPane.YES_OPTION) {
+						searchStore.add(store.get(i));
+						for (int j = 0; j < searchStore.size(); j++) {
+							sName = searchStore.get(0).getStoreName().toString();
+						}
+					}
+				
+				
+				if (result == JOptionPane.YES_OPTION) {
+
+					for (int j = 0; j < store.size(); j++) {
+						if (store.get(j).getStoreName().equals(sName)) {
 
 							sd.deleteStore_name(deleteName);
 							JOptionPane.showMessageDialog(getParent(), deleteName + " 삭제되었습니다.");
 							System.out.println(sd.displayAllList());
+							return;
 						}
 
 						else {
 							JOptionPane.showMessageDialog(getParent(), deleteName + " 삭제취소.");
 							System.out.println("가게 삭제 취소");
+							
 						}
-
-						break;
-					}
-
-					else {
-						JOptionPane.showMessageDialog(getParent(), deleteName + " 없는 가게입니다.");
 						return;
+						
+						
 					}
 				}
+
+				else {
+					JOptionPane.showMessageDialog(getParent(), deleteName + " 없는 가게입니다.");
+					break;
+				}
+
+			}
+				
 			}
 		});
+		
 
 		// 버튼2번 이벤트
 		btn2.addActionListener(new ActionListener() {
