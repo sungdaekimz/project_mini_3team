@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import com.kh.mini.model.vo.Store;
 import com.kh.mini.view.AppMenu;
 
 public class Reserve implements ActionListener {
@@ -125,13 +126,15 @@ public class Reserve implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		if (arg0.getSource() == btn1) {
 			ClickButton_reserve(arg0);
+			Store store = sd.displayReserveList().get(0);
+			store.setVisitCount(store.getVisitCount()+1);
 			frm.setVisible(false);
 			new AppMenu();
 			return;
 		}
 
 		if (arg0.getSource() == btn2) {
-			new SelectStore();
+			
 			frm.setVisible(false);
 			new AppMenu();
 			return;
