@@ -47,9 +47,9 @@ public class SwingLogin implements ActionListener {
 		}
 
 		// 로고 이미지넣기
-		Image icon = new ImageIcon("image/배고프조로고.png").getImage().getScaledInstance(300, 300, 0);
+		Image icon = new ImageIcon("image/배고프조로고.png").getImage().getScaledInstance(350, 350, 0);
 		JLabel label = new JLabel(new ImageIcon(icon));
-		label.setBounds(95, 20, 250, 150);
+		label.setBounds(95, 50, 250, 150);
 		frm.getContentPane().add(label);
 
 		// 로그인, 회원가입, 아이디찾기, 비밀번호찾기 버튼생성
@@ -111,18 +111,6 @@ public class SwingLogin implements ActionListener {
 		jpf.setBounds(120, 300, 250, 50);
 		jpf.setFont(f1);
 		frm.getContentPane().add(jpf);
-
-		// 일반회원, 사업자, 관리자 체크박스생성
-
-		u = new JCheckBox("일반회원");
-		u.setBounds(80, 200, 80, 20);
-		p = new JCheckBox("사업자");
-		p.setBounds(190, 200, 80, 20);
-		a = new JCheckBox("관리자");
-		a.setBounds(290, 200, 80, 20);
-		frm.getContentPane().add(u);
-		frm.getContentPane().add(p);
-		frm.getContentPane().add(a);
 
 		frm.setVisible(true);
 
