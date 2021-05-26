@@ -35,7 +35,6 @@ public class AppManager extends JFrame {
 	private FoodDao fd = new FoodDao();
 	private Scanner sc = new Scanner(System.in);
 	private Store store = new Store();
-	// private static ArrayList<Store> list = new ArrayList<Store>();
 	private static String sName = "";
 	private static double star = 0;
 	private static int lastVisit;
@@ -44,99 +43,6 @@ public class AppManager extends JFrame {
 	public AppManager() {
 		// TODO Auto-generated constructor stub
 	}
-
-	/*public void addMenu(Store store) {
-		// 로그인 정보에 따라 가게 이름을 가져온다.
-		// (store 배열리스트에서 점주 이름 검색 -> 가게 객체 찾고 -> 가게 이름 가져오기)
-		String storeName = store.getStoreName();
-
-		// 가게의 메뉴 전체 출력
-		// (가게 이름 가져온걸로 food 배열리스트에서 메뉴 찾기?)
-		// Store 라는 클래스가 Food를 상속 or implements 하는 게 좋을듯
-		System.out.println("******* MENU *******");
-		Iterator it = fd.displayAllList(storeName).iterator();
-		while (it.hasNext()) {
-			System.out.println(it.next());
-		}
-
-		System.out.println("추가할 메뉴 이름 : ");
-		String foodName = sc.nextLine();
-		System.out.println("추가할 메뉴 가격 : ");
-		int foodPrice = sc.nextInt();
-		sc.nextLine();
-
-		fd.writeFood(new Food(storeName, fd.getLastFoodNo() + 1, foodName, foodPrice));
-
-		System.out.println("메뉴 추가가 완료되었습니다.");
-
-	}
-
-	public void deleteMenu(Store store) {
-		// 로그인 정보에 따라 가게 이름을 가져온다.
-		String storeName = store.getStoreName();
-
-		// 가게의 메뉴 전체 출력
-		System.out.println("******* MENU *******");
-		Iterator it = fd.displayAllList().iterator();
-		while (it.hasNext()) {
-			System.out.println(it.next());
-		}
-
-		System.out.println("삭제할 메뉴 번호 : ");
-		int no = sc.nextInt();
-		sc.nextLine();
-
-		Food food = fd.displayFood(no);
-		if (food == null) {
-			System.out.println("해당하는 메뉴가 없습니다.");
-		} else {
-			System.out.println(food);
-			System.out.println("정말로 삭제하시겠습니까? (y/n) : ");
-			char answer = sc.nextLine().toUpperCase().charAt(0);
-
-			if (answer == 'Y') {
-				fd.deleteFood(no);
-				System.out.println(no + "번 메뉴가 삭제되었습니다.");
-			}
-		}
-
-	}
-
-	public void settingOpen(Store store) {
-		// 로그인 정보에 따라 가게 이름을 가져온다.
-		String storeName = store.getStoreName();
-
-		
-		 * // 가게 정보 출력 System.out.println("******* STORE INFORMATION *******"); Iterator
-		 * it = sd.displayStore(storeName).iterator(); while (it.hasNext()) {
-		 * System.out.println(it.next()); }
-		 
-
-		// 현재 온/오프 여부 출력
-		String isStoreOpen = "";
-		if (store.isStoreOpen() == true) {
-			isStoreOpen = "Open";
-		} else {
-			isStoreOpen = "Close";
-		}
-
-		System.out.println("가게의 현재 예약 설정은 " + isStoreOpen + " 입니다.");
-		System.out.println("설정을 변경하시겠습니까? (y/n) : ");
-		char answer = sc.nextLine().toUpperCase().charAt(0);
-
-		if (store.isStoreOpen() == true) {
-			if (answer == 'Y') {
-				store.setStoreOpen(false);
-				System.out.println("설정 변경이 완료되었습니다.");
-			}
-		} else {
-			if (answer == 'N') {
-				store.setStoreOpen(true);
-				System.out.println("설정 변경이 완료되었습니다.");
-			}
-		}
-
-	}*/
 
 	public void createReview(String storeName) {
 
