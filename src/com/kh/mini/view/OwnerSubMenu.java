@@ -546,7 +546,7 @@ class SettingOpen extends JFrame {
 		this.setVisible(false);
 		new SettingOpen();
 		return;
-
+    
 	}
 
 	protected void backToOwnerSubMenu() {
