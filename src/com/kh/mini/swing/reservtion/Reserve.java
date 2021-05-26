@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+
 import com.kh.mini.model.dao.FoodDao;
 import com.kh.mini.model.dao.StoreDao;
 import com.kh.mini.model.vo.Store;
@@ -151,14 +152,18 @@ public class Reserve implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		if (arg0.getSource() == btn1) {
 			ClickButton_reserve(arg0);
+			Store store = sd.displayReserveList().get(0);
+			store.setVisitCount(store.getVisitCount()+1);
 			frm.setVisible(false);
 			new AppMenu();
 			return;
 		}
 
 		if (arg0.getSource() == btn2) {
+
 			sd.clearReserveList();
 			new SelectStore();
+
 			frm.setVisible(false);
 			new AppMenu();
 			return;
