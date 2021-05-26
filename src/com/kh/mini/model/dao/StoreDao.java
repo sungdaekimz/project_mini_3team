@@ -295,9 +295,10 @@ public class StoreDao {
 	public void deleteStore_name(String deleteName) {
 
 		for (int i = 0; i < list.size(); i++) {
-			list.get(i).getStoreName().equals(deleteName);
-			list.remove(i);
-			break;
+			if(list.get(i).getStoreName().equals(deleteName)) {
+				list.remove(i);
+				break;
+			}
 		}
 	}
 
