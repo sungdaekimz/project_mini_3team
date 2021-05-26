@@ -2,7 +2,6 @@ package com.kh.mini.model.vo;
 
 public class Food extends Store {
 
-	private int foodNo;
 	private String foodName;
 	private int foodPrice;
 
@@ -10,20 +9,11 @@ public class Food extends Store {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Food(String storeName, int foodNo, String foodName, int foodPrice) {
+	public Food(String storeName, String foodName, int foodPrice) {
 		super(storeName);
-		this.foodNo = foodNo;
 		this.foodName = foodName;
 		this.foodPrice = foodPrice;
 		// TODO Auto-generated constructor stub
-	}
-
-	public int getFoodNo() {
-		return foodNo;
-	}
-
-	public void setFoodNo(int foodNo) {
-		this.foodNo = foodNo;
 	}
 
 	public String getFoodName() {
@@ -44,7 +34,7 @@ public class Food extends Store {
 
 	@Override
 	public String toString() {
-		return "Food [foodNo=" + foodNo + ", foodName=" + foodName + ", foodPrice=" + foodPrice + "]";
+		return foodName + " " + foodPrice + "원";
 	}
 
 }

@@ -45,7 +45,7 @@ public class AppManager extends JFrame {
 		// TODO Auto-generated constructor stub
 	}
 
-	public void addMenu(Store store) {
+	/*public void addMenu(Store store) {
 		// 로그인 정보에 따라 가게 이름을 가져온다.
 		// (store 배열리스트에서 점주 이름 검색 -> 가게 객체 찾고 -> 가게 이름 가져오기)
 		String storeName = store.getStoreName();
@@ -106,11 +106,11 @@ public class AppManager extends JFrame {
 		// 로그인 정보에 따라 가게 이름을 가져온다.
 		String storeName = store.getStoreName();
 
-		/*
+		
 		 * // 가게 정보 출력 System.out.println("******* STORE INFORMATION *******"); Iterator
 		 * it = sd.displayStore(storeName).iterator(); while (it.hasNext()) {
 		 * System.out.println(it.next()); }
-		 */
+		 
 
 		// 현재 온/오프 여부 출력
 		String isStoreOpen = "";
@@ -136,7 +136,7 @@ public class AppManager extends JFrame {
 			}
 		}
 
-	}
+	}*/
 
 	public void createReview(String storeName) {
 
@@ -225,7 +225,6 @@ public class AppManager extends JFrame {
 					sName = searchStore.get(0).getStoreName().toString();
 					lastVisit = searchStore.get(0).getVisitCount();
 					reviewCount = sd.getLastReviewCount(sName);
-					// System.out.println(reviewCount);
 				}
 
 				int ans1 = JOptionPane.showConfirmDialog(null, sName + "에 방문하셨나요?", "방문확인", JOptionPane.YES_NO_OPTION,
@@ -234,7 +233,6 @@ public class AppManager extends JFrame {
 				if (ans1 == JOptionPane.YES_OPTION) {
 
 					for (int j = 0; j < list.size(); j++) {
-						// 방문횟수가 0인 경우 후기 작성 불가 return
 						if (list.get(j).getStoreName().equals(sName) && list.get(j).getVisitCount() == 0) { // 수정했음
 
 							JOptionPane.showMessageDialog(null, sName + " 방문내역이 없습니다.\n다른 음식점을 이용하신 경우 이름을 다시 확인해주세요!");
@@ -262,7 +260,6 @@ public class AppManager extends JFrame {
 							public void actionPerformed(ActionEvent e) {
 								int rStar = 5;
 								star = rStar;
-								sd.addStoreStar(sName, rStar);
 
 							}
 						});
@@ -272,7 +269,6 @@ public class AppManager extends JFrame {
 							public void actionPerformed(ActionEvent e) {
 								int rStar = 4;
 								star = rStar;
-								sd.addStoreStar(sName, rStar);
 							}
 						});
 						r3.addActionListener(new ActionListener() {
@@ -281,7 +277,6 @@ public class AppManager extends JFrame {
 							public void actionPerformed(ActionEvent e) {
 								int rStar = 3;
 								star = rStar;
-								sd.addStoreStar(sName, rStar);
 							}
 						});
 						r4.addActionListener(new ActionListener() {
@@ -290,7 +285,6 @@ public class AppManager extends JFrame {
 							public void actionPerformed(ActionEvent e) {
 								int rStar = 2;
 								star = rStar;
-								sd.addStoreStar(sName, rStar);
 							}
 						});
 						r5.addActionListener(new ActionListener() {
@@ -299,7 +293,6 @@ public class AppManager extends JFrame {
 							public void actionPerformed(ActionEvent e) {
 								int rStar = 1;
 								star = rStar;
-								sd.addStoreStar(sName, rStar);
 							}
 						});
 						btn1.addActionListener(new ActionListener() {
@@ -311,6 +304,7 @@ public class AppManager extends JFrame {
 
 								if (ans3 == JOptionPane.YES_OPTION) {
 									JOptionPane.showMessageDialog(null, "후기작성이 취소되었습니다.");
+									star = 0;
 									new AppMenu();
 									return;
 								} else if (ans3 == JOptionPane.NO_OPTION) {
@@ -322,27 +316,44 @@ public class AppManager extends JFrame {
 
 							@Override
 							public void actionPerformed(ActionEvent e) {
+
 								String text = ta.getText();
 								Date today = new Date();
-								SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd (E요일)");
-								String review = "작성일: " + sdf.format(today) + "\n" + "후기: " + text;
+								SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd(E)");
+								String review = text;
 
 								// ******
 
-								int ans = JOptionPane.showConfirmDialog(null,
-										"[==내용을 확인해주세요.==]\n" + "별점: " + star + "\n" + review, "확인",
-										JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+								if (star == 0 && review.isEmpty()) {
+									JOptionPane.showMessageDialog(null, "별점과 후기를 남겨주세요");
+									return;
+								} else if (star == 0 && !review.isEmpty()) {
+									JOptionPane.showMessageDialog(null, "별점을 남겨주세요");
+									return;
+								} else if (star != 0 && review.isEmpty()) {
+									JOptionPane.showMessageDialog(null, "후기를 남겨주세요");
+									return;
+								} else {
+									sd.addStoreStar(sName, star);
 
-								if (ans == JOptionPane.YES_OPTION) {
-									reviewCount++;
-									sd.addReview(new StoreReview(sName, star, review, reviewCount));
-									JOptionPane.showMessageDialog(null, "소중한 후기 감사합니다~!");
-									setVisible(false);
-									new AppMenu();
-									System.out.println(sd.displayAllReviewList());
-									return;
-								} else if (ans == JOptionPane.NO_OPTION) {
-									return;
+									int ans = JOptionPane.showConfirmDialog(null,
+											"[==내용을 확인해주세요.==]\n" + "별점: " + star + "\n" + "작성일: " + sdf.format(today)
+													+ "\n" + "후기: " + review,
+											"확인", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+									if (ans == JOptionPane.YES_OPTION) {
+
+										reviewCount++;
+										sd.addReview(
+												new StoreReview(sName, star, review, reviewCount, sdf.format(today)));
+										JOptionPane.showMessageDialog(null, "소중한 후기 감사합니다~!");
+										setVisible(false);
+										new AppMenu();
+										System.out.println(sd.displayAllReviewList());
+										return;
+
+									} else if (ans == JOptionPane.NO_OPTION) {
+										return;
+									}
 								}
 
 							}

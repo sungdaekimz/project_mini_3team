@@ -1,5 +1,6 @@
 package com.kh.mini.swing.reservtion;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -14,9 +15,11 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import com.kh.mini.view.AppMenu;
+
 public class SelectStore implements ActionListener{
 	JLabel label1, label2, label3, label4;
-	JButton btn1, btn2, btn3, btn4;
+	JButton btn1, btn2, btn3, btn4, btn5;
 	JFrame frm;
 
 	public SelectStore() {
@@ -63,6 +66,12 @@ public class SelectStore implements ActionListener{
 		btn4 = new JButton(jap);
 		btn4.setBounds(320,270,80,70);
         frm.getContentPane().add(btn4);
+        
+        btn5 = new JButton("홈");
+        btn5.setBounds(170, 490, 100, 30);
+		btn5.setBackground(Color.gray);
+		btn5.setForeground(Color.white);
+		frm.getContentPane().add(btn5);
         
         btn1.addActionListener(this);
         btn2.addActionListener(this);
@@ -111,18 +120,27 @@ public class SelectStore implements ActionListener{
 		if (arg0.getSource() == btn1) {
 			mc.Korean();;
 			frm.setVisible(false);
+			return;
 		}
 		if (arg0.getSource() == btn2) {
 			mc.Western();
 			frm.setVisible(false);
+			return;
 		}
 		if (arg0.getSource() == btn3) {
 			mc.Chinese();
 			frm.setVisible(false);
+			return;
 		}
 		if (arg0.getSource() == btn4) {
 			mc.Japanese();
 			frm.setVisible(false);
+			return;
+		}
+		if (arg0.getSource() == btn5) {
+			frm.setVisible(false);
+			new AppMenu();
+			return;
 		}
 		
 	}
