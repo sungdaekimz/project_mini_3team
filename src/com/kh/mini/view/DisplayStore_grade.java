@@ -3,8 +3,11 @@ package com.kh.mini.view;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -26,6 +29,13 @@ public class DisplayStore_grade extends JFrame {
 		this.setSize(450, 600);
 		this.setLayout(null);
 		this.setLocationRelativeTo(null);
+		
+		try {
+			this.setIconImage(ImageIO.read(new File("image/배고프조로고.png")));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		ArrayList<Store> store = sd.displayStore_grade(); // 이 내용을 붙여넣기만 하면 ;; 붙였다
 
