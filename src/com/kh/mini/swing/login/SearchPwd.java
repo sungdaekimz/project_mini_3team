@@ -21,11 +21,12 @@ public class SearchPwd implements ActionListener {
 	UserDao ud = new UserDao();
 	JTextField jtfId, jtfName, jtfPhone;
 	JButton btn1, btn2;
-
+	JFrame frm;
+	
 	public SearchPwd() {
 
 		// 프레임생성
-		JFrame frm = new JFrame("비밀번호 찾기");
+		frm = new JFrame("비밀번호 찾기");
 		frm.setSize(450, 650);
 		frm.setLocationRelativeTo(null);
 		frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -119,6 +120,7 @@ public class SearchPwd implements ActionListener {
 
 		if (arg0.getSource() == btn2) {
 			new SwingLogin();
+			frm.setVisible(false);
 		}
 
 	}
@@ -134,6 +136,8 @@ public class SearchPwd implements ActionListener {
 			if (id.equals(ud.displayAllList().get(k).getUserId()) && name.equals(ud.displayAllList().get(k).getUserName())
 					&& phone.equals(ud.displayAllList().get(k).getUserPhone())) {
 				JOptionPane.showMessageDialog(null, "회원님의 비밀번호는\n" + ud.displayAllList().get(k).getUserPwd() + " 입니다.");
+				new SwingLogin();
+				frm.setVisible(false);
 				return;
 			} 
 			if (id.equals(ud.displayAllList().get(k).getUserId()) && name.equals(ud.displayAllList().get(k).getUserName())
