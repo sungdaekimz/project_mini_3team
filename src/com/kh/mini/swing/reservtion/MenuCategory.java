@@ -11,6 +11,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
@@ -84,14 +85,21 @@ public class MenuCategory implements ActionListener {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					sd.writeReserveStore(store);
-					System.out.println("선택한 가게 : " + sd.displayReserveList().toString());
-					new Reserve();
-					frm.setVisible(false);
-					return;
+					if (e.getActionCommand() == "Open") {
+						sd.writeReserveStore(store);
+						System.out.println("선택한 가게 : " + sd.displayReserveList().toString());
+						new Reserve();
+						frm.setVisible(false);
+						return;
+
+					} else if (e.getActionCommand() == "Close") {
+						JOptionPane.showMessageDialog(null, "예약 불가능한 가게입니다.");
+						return;
+					}
+
 				}
 			});
-			
+
 		}
 
 		frm.setVisible(true);
@@ -156,11 +164,18 @@ public class MenuCategory implements ActionListener {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					sd.writeReserveStore(store);
-					System.out.println("선택한 가게 : " + sd.displayReserveList().toString());
-					new Reserve();
-					frm.setVisible(false);
-					return;
+					if (e.getActionCommand() == "Open") {
+						sd.writeReserveStore(store);
+						System.out.println("선택한 가게 : " + sd.displayReserveList().toString());
+						new Reserve();
+						frm.setVisible(false);
+						return;
+
+					} else if (e.getActionCommand() == "Close") {
+						JOptionPane.showMessageDialog(null, "예약 불가능한 가게입니다.");
+						return;
+					}
+
 				}
 			});
 			
@@ -228,11 +243,18 @@ public class MenuCategory implements ActionListener {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					sd.writeReserveStore(store);
-					System.out.println("선택한 가게 : " + sd.displayReserveList().toString());
-					new Reserve();
-					frm.setVisible(false);
-					return;
+					if (e.getActionCommand() == "Open") {
+						sd.writeReserveStore(store);
+						System.out.println("선택한 가게 : " + sd.displayReserveList().toString());
+						new Reserve();
+						frm.setVisible(false);
+						return;
+
+					} else if (e.getActionCommand() == "Close") {
+						JOptionPane.showMessageDialog(null, "예약 불가능한 가게입니다.");
+						return;
+					}
+
 				}
 			});
 			
@@ -300,11 +322,18 @@ public class MenuCategory implements ActionListener {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					sd.writeReserveStore(store);
-					System.out.println("선택한 가게 : " + sd.displayReserveList().toString());
-					new Reserve();
-					frm.setVisible(false);
-					return;
+					if (e.getActionCommand() == "Open") {
+						sd.writeReserveStore(store);
+						System.out.println("선택한 가게 : " + sd.displayReserveList().toString());
+						new Reserve();
+						frm.setVisible(false);
+						return;
+
+					} else if (e.getActionCommand() == "Close") {
+						JOptionPane.showMessageDialog(null, "예약 불가능한 가게입니다.");
+						return;
+					}
+
 				}
 			});
 			

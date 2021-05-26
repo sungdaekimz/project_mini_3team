@@ -546,10 +546,6 @@ class SettingOpen extends JFrame {
 		this.setVisible(false);
 		new SettingOpen();
 		return;
-		/*this.removeAll();
-		this.add(new SettingOpen());
-		this.revalidate();
-		this.repaint();*/
 
 	}
 
