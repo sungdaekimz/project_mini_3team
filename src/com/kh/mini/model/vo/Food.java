@@ -44,7 +44,7 @@ public class Food extends Store {
 
 	@Override
 	public String toString() {
-		return "Food [foodNo=" + foodNo + ", foodName=" + foodName + ", foodPrice=" + foodPrice + "]";
+		return foodNo + ". " + foodName + " " + foodPrice + "원";
 	}
 
 }

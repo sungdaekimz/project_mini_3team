@@ -164,7 +164,9 @@ public class AppMenu extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
 				new MyPageSwing().myMain();
+				return;
 			}
 
 		});
