@@ -55,12 +55,11 @@ public class StoreDao {
 	public void writeStore(Store store) {
 		list.add(store);
 	}
-	
+
 	// 1_1. 예약할 가게 정보를 예약 리스트에 추가
 	public void writeReserveStore(Store store) {
 		reserveList.add(store);
 	}
-
 
 	// 2. 전체 가게 보기
 	public ArrayList<Store> displayAllList() {
@@ -94,7 +93,7 @@ public class StoreDao {
 		}
 		return storeName;
 	}
-	
+
 	// 3. 가게 유형별로 검색
 	public ArrayList<Store> searchStore(String type) {
 
@@ -109,145 +108,78 @@ public class StoreDao {
 
 		return searchList;
 	}
-	
-	// 4. 예약한 가게 보기
-		public ArrayList<Store> displayReserveList() {
 
-			return reserveList;
-		}
-		
+	// 4. 예약한 가게 보기
+	public ArrayList<Store> displayReserveList() {
+
+		return reserveList;
+	}
+
 	// 4_1. 예약한 가게 초기화
 	public void clearReserveList() {
 
 		reserveList.clear();
 	}
 
-	
-	// -------------------- 여기부터 삭제해도 될런지?
-	// 3. 조회수 올리기
-	public void upReadCount(int no) {
-		for (int i = 0; i < list.size(); i++) {
-			if (list.get(i).getStoreNo() == no) {
-				list.get(i).setVisitCount(list.get(i).getVisitCount() + 1);
-				// (기존의 조회수 + 1)을 조회수로써 수정한다.
-				break;
-			}
-		}
+	// 리뷰작성시 카운트 올리기
+	public int getLastReviewCount(String sName) {
 
-	}
-
-	/*// 4. 게시글 제목 수정
-	public void modifyTitle(int no, String name) {
-
-		for (int i = 0; i < list.size(); i++) {
-			if (list.get(i).getStoreNo() == no) {
-				list.get(i).setStoreName(name);
-				break;
-			}
-		}
-	}
-
-	// 5. 게시글 내용 수정
-	public void modifyContent(int no, String content) {
-
-		for (int i = 0; i < list.size(); i++) {
-			if (list.get(i).getStoreNo() == no) {
-				list.get(i).setStoreAddr(content);
-				break;
-			}
-		}
-	}
-
-	// 6. 게시글 삭제
-	public void deleteStore(int no) {
-
-		for (int i = 0; i < list.size(); i++) {
-			if (list.get(i).getStoreNo() == no) {
-				list.remove(i);
-				break;
-			}
-		}
-	}
-
-	// 7. 게시글 검색
-	public ArrayList<Store> searchStore(String title) {
-
-		ArrayList<Store> searchList = new ArrayList<Store>();
-
-		for (int i = 0; i < list.size(); i++) {
-			if (list.get(i).getStoreName().contains(title)) {
-				searchList.add(list.get(i));
-
-				
-				 * // 조회수 올리기 list.get(i).setVisitCount(list.get(i).getVisitCount() + 1);
-				 
-			}
-		}
-
-		return searchList;
-	}*/
-	// --------------------
-	
-	
-	public int getLastReviewCount(String sName) {		// 가게 마지막 방문번호 얻어오기 // 필요없어짐.
-		
 		ArrayList<StoreReview> lastRC = new ArrayList<StoreReview>();
-		
+
 		for (int i = 0; i < reviewList.size(); i++) {
 			if (reviewList.get(i).getStoreName().equals(sName)) {
 				lastRC.add(reviewList.get(i));
-				}
-			
+			}
+
 		}
-		if(lastRC.isEmpty()) {
+		if (lastRC.isEmpty()) {
 			return 0;
 		}
-		return lastRC.get(lastRC.size()-1).getReviewCount();
+		return lastRC.get(lastRC.size() - 1).getReviewCount();
 	}
-	
+
+	// 작성 리뷰 리스트 저장
 	public void addReview(StoreReview store) {
 		reviewList.add(store);
 	}
-	
+
+	// 작성 리뷰 보기
 	public ArrayList<StoreReview> displayAllReviewList() {
-		
+
 		return reviewList;
 	}
 
+	// 별점 저장하기
 	public void addStoreStar(String sName, double star) {
-		
-//		System.out.println(sName+"(은/는) "+star);
-		
+
 		double storeGrade = 0;
 		int visitCount = 0;
-		
+
 		ArrayList<Store> vc = new ArrayList<Store>();
-		
+
 		for (int i = 0; i < list.size(); i++) {
 			if (list.get(i).getStoreName().equals(sName)) {
 				vc.add(list.get(i));
 				storeGrade = vc.get(0).getStoreGrade();
 				visitCount = vc.get(0).getVisitCount();
-			} 
+			}
 		}
 		double totalStoreGrade = 0;
-		
-		if(visitCount == 1) {
-			totalStoreGrade = storeGrade+star;
-		}else {
-			totalStoreGrade = storeGrade*(visitCount-1)+star;
+
+		if (visitCount == 1) {
+			totalStoreGrade = storeGrade + star;
+		} else {
+			totalStoreGrade = storeGrade * (visitCount - 1) + star;
 		}
-		double avgStoreGrade = totalStoreGrade/(double)(visitCount+1);
-		avgStoreGrade = (Math.round(avgStoreGrade*10)/10.0);
+		double avgStoreGrade = totalStoreGrade / (double) (visitCount + 1);
+		avgStoreGrade = (Math.round(avgStoreGrade * 10) / 10.0);
 		for (int i = 0; i < list.size(); i++) {
 			if (list.get(i).getStoreName().equals(sName)) {
 				list.get(i).setStoreGrade(avgStoreGrade);
-			} 
+			}
 		}
-		System.out.println(avgStoreGrade);
 	}
 
-	
 	// 이름순정렬
 	public ArrayList<Store> displayStore_name() {
 
