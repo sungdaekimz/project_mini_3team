@@ -16,13 +16,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import com.kh.mini.controller.AppManager;
 import com.kh.mini.model.dao.StoreDao;
+import com.kh.mini.model.dao.UserDao;
 import com.kh.mini.model.vo.StoreReview;
 import com.kh.mini.model.vo.User;
 
@@ -52,14 +51,14 @@ public class MyPageSwing extends JFrame {
 			e.printStackTrace();
 		}
 
-		JButton mb1 = new JButton("회원정보");
-		JButton mb2 = new JButton("후기조회");
-
-		mb1.setBounds(140, 200, 150, 50);
-		mb2.setBounds(140, 280, 150, 50);
-
-		mb1.setBackground(Color.gray);
-		mb2.setBackground(Color.gray);
+		JButton mb1 = new JButton("회원 정보 조회");
+		mb1.setBounds(85, 100, 270, 50);
+		mb1.setBackground(Color.GRAY);
+		
+		JButton mb2 = new JButton("나의 후기 조회");
+		mb2.setBounds(85, 180, 270, 50);
+		mb2.setBackground(Color.GRAY);
+		
 		mb1.setForeground(Color.white);
 		mb2.setForeground(Color.white);
 
@@ -89,6 +88,9 @@ public class MyPageSwing extends JFrame {
 
 		c.add(mb1);
 		c.add(mb2);
+		
+		this.setVisible(true);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 	}
 }
@@ -101,7 +103,8 @@ class MyInfo extends JFrame {
 	public void myInfo() {
 
 		User u = new User();
-		ArrayList<User> uList = new ArrayList<User>();
+		UserDao ud = new UserDao();
+		ArrayList<User> loginList = new ArrayList<User>();
 
 		setTitle("마이페이지");
 		setSize(450, 600);
@@ -129,14 +132,14 @@ class MyInfo extends JFrame {
 
 		lb1 = new JLabel("회원 아이디");
 		lb1.setBounds(40, 200, 110, 25);
-		lb8 = new JLabel(u.getUserId());
+		lb8 = new JLabel("     " + ud.displayLoginUser().getUserId());
 		lb8.setBounds(140, 200, 250, 25);
 		lb8.setOpaque(true);
 		lb8.setBackground(Color.lightGray);
 
 		lb2 = new JLabel("비밀번호");
 		lb2.setBounds(40, 240, 110, 25);
-		lb9 = new JLabel(u.getUserPwd());
+		lb9 = new JLabel("     " + ud.displayLoginUser().getUserPwd());
 		lb9.setBounds(140, 240, 250, 25);
 		lb9.setOpaque(true);
 		lb9.setBackground(Color.lightGray);
@@ -145,7 +148,7 @@ class MyInfo extends JFrame {
 		lb3 = new JLabel("이름");
 		lb3.setBounds(40, 280, 110, 25);
 		// System.out.println(u.getUserName());
-		lb10 = new JLabel(u.getUserName());
+		lb10 = new JLabel("     " + ud.displayLoginUser().getUserName());
 		lb10.setBounds(140, 280, 250, 25);
 		lb10.setOpaque(true);
 		lb10.setBackground(Color.lightGray);
@@ -154,7 +157,7 @@ class MyInfo extends JFrame {
 		lb4 = new JLabel("나이");
 		lb4.setBounds(40, 320, 110, 25);
 		// System.out.println(u.getUserAge());
-		lb11 = new JLabel(String.valueOf(u.getUserAge()));
+		lb11 = new JLabel(String.valueOf("     " + ud.displayLoginUser().getUserAge()));
 		lb11.setBounds(140, 320, 250, 25);
 		lb11.setOpaque(true);
 		lb11.setBackground(Color.lightGray);
@@ -163,7 +166,7 @@ class MyInfo extends JFrame {
 		lb5 = new JLabel("성별");
 		lb5.setBounds(40, 360, 110, 25);
 		System.out.println(u.getUserGender());
-		lb12 = new JLabel(String.valueOf(u.getUserGender()));
+		lb12 = new JLabel(String.valueOf("     " + ud.displayLoginUser().getUserGender()));
 		lb12.setBounds(140, 360, 250, 25);
 		lb12.setOpaque(true);
 		lb12.setBackground(Color.lightGray);
@@ -172,7 +175,7 @@ class MyInfo extends JFrame {
 		lb6 = new JLabel("휴대전화");
 		lb6.setBounds(40, 400, 110, 25);
 		// System.out.println(u.getUserPhone());
-		lb13 = new JLabel(u.getUserPhone());
+		lb13 = new JLabel("     " + ud.displayLoginUser().getUserPhone());
 		lb13.setBounds(140, 400, 250, 25);
 		lb13.setOpaque(true);
 		lb13.setBackground(Color.lightGray);
@@ -181,7 +184,7 @@ class MyInfo extends JFrame {
 		lb7 = new JLabel("권한");
 		lb7.setBounds(40, 440, 110, 25);
 		// System.out.println(u.getUserType());
-		lb14 = new JLabel(String.valueOf(u.getUserType()));
+		lb14 = new JLabel(String.valueOf("     " + ud.displayLoginUser().getUserType()));
 		lb14.setBounds(140, 440, 250, 25);
 		lb14.setOpaque(true);
 		lb14.setBackground(Color.lightGray);

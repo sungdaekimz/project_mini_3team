@@ -312,11 +312,12 @@ class DeleteMenu extends JFrame {
 		lb3.setHorizontalAlignment(JLabel.CENTER);
 
 		String storeName = sd.findStoreName(ud.displayLoginUser().getUserName());
+		System.out.println(ud.displayLoginUser().getUserName() + " storeName : " + storeName);
 		int x = 10, y = 10, width = 400, height = 200;
 		lbArr = new JLabel[10];
 		Iterator it = fd.displayAllList(storeName).iterator();
 		while (it.hasNext()) {
-			for (int i = 0; i < fd.getLastFoodNo(); i++) {
+			for (int i = 0; i < fd.displayAllList(storeName).size(); i++) {
 				lbArr[i] = new JLabel(it.next().toString());
 				lbArr[i].setBounds(x, y, width, height);
 				lbArr[i].setHorizontalAlignment(JLabel.CENTER);
@@ -477,10 +478,13 @@ class SettingOpen extends JFrame {
 	}
 
 	protected void reloadPanel() {
-		this.removeAll();
+		this.setVisible(false);
+		new SettingOpen();
+		return;
+		/*this.removeAll();
 		this.add(new SettingOpen());
 		this.revalidate();
-		this.repaint();
+		this.repaint();*/
 
 	}
 
