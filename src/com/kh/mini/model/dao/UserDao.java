@@ -14,16 +14,6 @@ public class UserDao {
 	static ArrayList<User> list = new ArrayList<User>();
 	static ArrayList<User> loginList = new ArrayList<User>();
 	
-	/*
-	static {
-		
-		list.add(new User("admin", "admin", "관리자", "010-0000-0000", 28, 'F', 'A'));
-		
-		System.out.println("계정 리스트 생성 완료!");
-		
-	}
-	*/
-	
 	public UserDao() {
 		// TODO Auto-generated constructor stub
 	}
@@ -93,9 +83,6 @@ public class UserDao {
 			if (list.get(i).getUserName().contains(title)) {
 				searchList.add(list.get(i));
 
-				/*
-				 * // 조회수 올리기 list.get(i).setReadCount(list.get(i).getReadCount() + 1);
-				 */
 			}
 		}
 

@@ -8,7 +8,6 @@ public class Run {
 		// TODO Auto-generated method stub
 		
 		new SwingLogin();
-//		new AppMenu();
 
 	}
 

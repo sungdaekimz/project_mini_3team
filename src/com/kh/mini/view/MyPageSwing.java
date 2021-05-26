@@ -27,7 +27,6 @@ import com.kh.mini.model.vo.User;
 
 public class MyPageSwing extends JFrame {
 
-	Scanner sc = new Scanner(System.in);
 	private AppManager am = new AppManager();
 	private StoreDao sd = new StoreDao();
 
@@ -144,25 +143,20 @@ class MyInfo extends JFrame {
 		lb9.setOpaque(true);
 		lb9.setBackground(Color.lightGray);
 
-		// System.out.println("이름 : ");
 		lb3 = new JLabel("이름");
 		lb3.setBounds(40, 280, 110, 25);
-		// System.out.println(u.getUserName());
 		lb10 = new JLabel("     " + ud.displayLoginUser().getUserName());
 		lb10.setBounds(140, 280, 250, 25);
 		lb10.setOpaque(true);
 		lb10.setBackground(Color.lightGray);
 
-		// System.out.println("나이 : ");
 		lb4 = new JLabel("나이");
 		lb4.setBounds(40, 320, 110, 25);
-		// System.out.println(u.getUserAge());
 		lb11 = new JLabel(String.valueOf("     " + ud.displayLoginUser().getUserAge()));
 		lb11.setBounds(140, 320, 250, 25);
 		lb11.setOpaque(true);
 		lb11.setBackground(Color.lightGray);
 
-		// System.out.println("성별 : ");
 		lb5 = new JLabel("성별");
 		lb5.setBounds(40, 360, 110, 25);
 		System.out.println(u.getUserGender());
@@ -171,19 +165,15 @@ class MyInfo extends JFrame {
 		lb12.setOpaque(true);
 		lb12.setBackground(Color.lightGray);
 
-		// System.out.println("휴대전화 : ");
 		lb6 = new JLabel("휴대전화");
 		lb6.setBounds(40, 400, 110, 25);
-		// System.out.println(u.getUserPhone());
 		lb13 = new JLabel("     " + ud.displayLoginUser().getUserPhone());
 		lb13.setBounds(140, 400, 250, 25);
 		lb13.setOpaque(true);
 		lb13.setBackground(Color.lightGray);
 
-		// System.out.println("권한 : ");
 		lb7 = new JLabel("권한");
 		lb7.setBounds(40, 440, 110, 25);
-		// System.out.println(u.getUserType());
 		lb14 = new JLabel(String.valueOf("     " + ud.displayLoginUser().getUserType()));
 		lb14.setBounds(140, 440, 250, 25);
 		lb14.setOpaque(true);

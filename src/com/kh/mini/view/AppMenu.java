@@ -23,8 +23,6 @@ import com.kh.mini.model.dao.UserDao;
 import com.kh.mini.model.vo.Store;
 import com.kh.mini.swing.reservtion.SelectStore;
 
-//AppMemu extends JFrame
-
 public class AppMenu extends JFrame {
 
 	JPanel panel;
@@ -102,8 +100,6 @@ public class AppMenu extends JFrame {
 		panel.add(btn7);
 		panel.add(btn0);
 
-		// 이벤트 부분
-		
 		btn1.addActionListener(new ActionListener() {
 
 			@Override
@@ -138,7 +134,6 @@ public class AppMenu extends JFrame {
 				String storeName = null;
 				storeName = JOptionPane.showInputDialog(null, "방문하신 가게 이름을 적어주세요", "일부작성 가능");
 
-				// JOptionPane.showMessageDialog(null, storeName+"에 방문하셨나요?");
 				if (storeName == null) {
 					return;
 				}
@@ -236,12 +231,6 @@ public class AppMenu extends JFrame {
 		this.setVisible(false);
 		new OwnerSubMenu();
 		return;
-		// 사장님 페이지로 패널 전환
-		/*
-		 * this.remove(panel); this.panel = new OwnerSubMenu(); this.add(panel);
-		 * this.revalidate(); this.repaint();
-		 */
-
 	}
 	
 	private void adminSubMenu() {
