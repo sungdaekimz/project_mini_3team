@@ -305,6 +305,7 @@ public class AppManager extends JFrame {
 								if (ans3 == JOptionPane.YES_OPTION) {
 									JOptionPane.showMessageDialog(null, "후기작성이 취소되었습니다.");
 									star = 0;
+									setVisible(false);
 									new AppMenu();
 									return;
 								} else if (ans3 == JOptionPane.NO_OPTION) {

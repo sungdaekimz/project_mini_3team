@@ -161,10 +161,7 @@ public class Reserve implements ActionListener {
 		}
 
 		if (arg0.getSource() == btn2) {
-
 			sd.clearReserveList();
-			new SelectStore();
-
 			frm.setVisible(false);
 			new AppMenu();
 			return;

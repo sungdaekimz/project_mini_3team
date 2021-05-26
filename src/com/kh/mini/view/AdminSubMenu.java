@@ -162,33 +162,34 @@ class DeleteStore extends JFrame {
 
 				String deleteName = tf1.getText();
 				System.out.println("삭제할 가게 이름 : " + deleteName);
-				int result = JOptionPane.showConfirmDialog(getParent(), "정말로 삭제하시겠습니까?", "삭제 확인",
-						JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 
-				for (int i = 0; i < store.size(); i++) {
+				for (int i = 0; i < sd.displayAllList().size(); i++) {
 
-					if (deleteName.equals(store.get(i).getStoreName())) {
+					if (deleteName.equals(sd.displayAllList().get(i).getStoreName())) {
+						int result = JOptionPane.showConfirmDialog(getParent(), "정말로 삭제하시겠습니까?", "삭제 확인",
+								JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 
 						if (result == JOptionPane.YES_OPTION) {
-
 							sd.deleteStore_name(deleteName);
 							JOptionPane.showMessageDialog(getParent(), deleteName + " 삭제되었습니다.");
 							System.out.println(sd.displayAllList());
-						}
 
-						else {
-							JOptionPane.showMessageDialog(getParent(), deleteName + " 삭제취소.");
-							System.out.println("가게 삭제 취소");
+						} else {
+							JOptionPane.showMessageDialog(getParent(), "삭제 취소.");
 						}
-
-						break;
+						return;
 					}
 
-					else {
+				}
+
+				for (int i = 0; i < sd.displayAllList().size(); i++) {
+					if (!deleteName.equals(sd.displayAllList().get(i).getStoreName())) {
 						JOptionPane.showMessageDialog(getParent(), deleteName + " 없는 가게입니다.");
+						System.out.println("가게 삭제 취소");
 						return;
 					}
 				}
+
 			}
 		});
 
@@ -299,6 +300,13 @@ class AddStore extends JFrame {
 				// double storeGrade = Integer.parseInt(tf7.getText());
 				// int visitCount = Integer.parseInt(tf8.getText());
 
+				for (int i = 0; i < sd.displayAllList().size(); i++) {
+					if (storeName.equals(sd.displayAllList().get(i).getStoreName())) {
+						JOptionPane.showMessageDialog(getParent(), storeName+" 이미 존재하는 가게입니다.");
+						return;
+					}
+				}
+				
 				if (storeType.equals("양식") || storeType.equals("중식") || storeType.equals("일식")
 						|| storeType.equals("한식")) {
 					System.out.println("추가한 가게 이름 : " + storeName + ", 주소 : " + storeAddr + ", 번호 : " + storeCall
@@ -306,12 +314,13 @@ class AddStore extends JFrame {
 					sd.writeStore(
 							new Store(storeNo, storeName, storeAddr, storeCall, storeType, ownerName, storeOpen, 0, 0));
 					System.out.println(sd.displayAllList());
-					JOptionPane.showMessageDialog(getParent(), "가게 추가가 완료되었습니다.");
-					return;
+					JOptionPane.showMessageDialog(getParent(), storeName+" 추가가 완료되었습니다.");
+					
 				} else {
 					JOptionPane.showMessageDialog(getParent(), "가게 종류를 다시 입력하세요.");
+					return;
 				}
-
+				
 			}
 		});
 
