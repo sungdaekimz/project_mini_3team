@@ -192,7 +192,7 @@ class AddMenu extends JFrame {
 	private UserDao ud = new UserDao();
 	
 	JLabel[] lbArr;
-	JLabel lb1, lb2, lb3;
+	JLabel lbIcon, lb1, lb2, lb3;
 	JTextField tf1, tf2;
 	JButton btn1, btn2;
 
@@ -201,6 +201,17 @@ class AddMenu extends JFrame {
 		this.setSize(450, 600);
 		this.setLayout(null);
 		this.setLocationRelativeTo(null);
+		
+		try {
+			this.setIconImage(ImageIO.read(new File("image/배고프조로고.png")));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		Image icon = new ImageIcon("image/배고프조로고.png").getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH);
+		lbIcon = new JLabel(new ImageIcon(icon));
+		lbIcon.setBounds(95, 0, 250, 150);
 
 		// 메뉴 보여주기
 		lb3 = new JLabel("MENU");
@@ -303,7 +314,7 @@ class DeleteMenu extends JFrame {
 	StoreDao sd = new StoreDao();
 	UserDao ud = new UserDao();
 	JLabel[] lbArr;
-	JLabel lb1, lb3;
+	JLabel lbIcon, lb1, lb3;
 	JTextField tf1, tf2;
 	JButton btn1, btn2;
 
@@ -312,6 +323,17 @@ class DeleteMenu extends JFrame {
 		this.setSize(450, 600);
 		this.setLayout(null);
 		this.setLocationRelativeTo(null);
+		
+		try {
+			this.setIconImage(ImageIO.read(new File("image/배고프조로고.png")));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		Image icon = new ImageIcon("image/배고프조로고.png").getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH);
+		lbIcon = new JLabel(new ImageIcon(icon));
+		lbIcon.setBounds(95, 0, 250, 150);
 
 		// 메뉴 보여주기
 		lb3 = new JLabel("MENU");
@@ -424,6 +446,7 @@ class SettingOpen extends JFrame {
 	UserDao ud = new UserDao();
 	StoreDao sd = new StoreDao();
 	JLabel[] lbArr;
+	JLabel lbIcon;
 	JButton btn1, btn2;
 	String isStoreOpen;
 
@@ -432,6 +455,17 @@ class SettingOpen extends JFrame {
 		this.setSize(450, 600);
 		this.setLayout(null);
 		this.setLocationRelativeTo(null);
+		
+		try {
+			this.setIconImage(ImageIO.read(new File("image/배고프조로고.png")));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		Image icon = new ImageIcon("image/배고프조로고.png").getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH);
+		lbIcon = new JLabel(new ImageIcon(icon));
+		lbIcon.setBounds(95, 0, 250, 150);
 
 		// 가게 정보 보여주기
 		String storeName = sd.findStoreName(ud.displayLoginUser().getUserName());
@@ -512,11 +546,6 @@ class SettingOpen extends JFrame {
 		this.setVisible(false);
 		new SettingOpen();
 		return;
-		/*this.removeAll();
-		this.add(new SettingOpen());
-		this.revalidate();
-		this.repaint();*/
-
 	}
 
 	protected void backToOwnerSubMenu() {

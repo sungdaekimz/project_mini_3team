@@ -117,11 +117,9 @@ public class AppManager extends JFrame {
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		// 식사여부 확인
 		ArrayList<Store> searchStore = new ArrayList<Store>();
 		ArrayList<Store> list = sd.displayAllList();
 
-		// list일떄 검색한 가게명이 포함되면 sName에 getStoreName() 넣기
 		for (int i = 0; i < list.size(); i++) {
 
 			if (list.get(i).getStoreName().contains(storeName)) {
@@ -262,9 +260,7 @@ public class AppManager extends JFrame {
 										return;
 									}
 								}
-
 							}
-
 						});
 
 					} else if (ans2 == JOptionPane.NO_OPTION) {

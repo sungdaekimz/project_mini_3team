@@ -42,11 +42,6 @@ public class StoreReview extends Store {
 		this.reviewDate = reviewDate;
 	}
 
-//	@Override
-//	public String toString() {
-//		return "StoreReview [storeReview= 이용매장: "+getStoreName()+" / 별점:  "+getStoreGrade()+" / 후기: "+ storeReview + "]";
-//	}
-
 	@Override
 	public String toString() {
 		return "==" + getStoreName() + "이용자의 후기입니다.==\n" + "별점: " + getStoreGrade() + "\n작성일: " +reviewDate+ "\n후기: "+storeReview + "\n";
