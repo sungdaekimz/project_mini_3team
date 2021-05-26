@@ -61,8 +61,10 @@ public class Reserve implements ActionListener {
 		JLabel menu = new JLabel();
 		menu = new JLabel();
 		String menuStr = "";
+		int j = 1;
 		Iterator it = fd.displayAllList(store.getStoreName()).iterator();
 		while (it.hasNext()) {
+			menuStr += (j++) + ". ";
 			menuStr += it.next().toString();
 			menuStr += "<br>";
 		}
@@ -103,11 +105,9 @@ public class Reserve implements ActionListener {
 
 		int i = 0;
 		String[] menu1 = new String[fd.displayAllList(store.getStoreName()).size()];
-
 		it = fd.displayAllList(store.getStoreName()).iterator();
 		while (it.hasNext()) {
-			menuStr = "";
-			menuStr = it.next().toString();
+			menuStr = (i + 1) + ". " + it.next().toString();
 			menu1[i++] = menuStr;
 		}
 
@@ -151,6 +151,7 @@ public class Reserve implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		if (arg0.getSource() == btn1) {
+			sd.clearReserveList();
 			ClickButton_reserve(arg0);
 			Store store = sd.displayReserveList().get(0);
 			store.setVisitCount(store.getVisitCount()+1);

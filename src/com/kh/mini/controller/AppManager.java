@@ -45,7 +45,7 @@ public class AppManager extends JFrame {
 		// TODO Auto-generated constructor stub
 	}
 
-	public void addMenu(Store store) {
+	/*public void addMenu(Store store) {
 		// 로그인 정보에 따라 가게 이름을 가져온다.
 		// (store 배열리스트에서 점주 이름 검색 -> 가게 객체 찾고 -> 가게 이름 가져오기)
 		String storeName = store.getStoreName();
@@ -106,11 +106,11 @@ public class AppManager extends JFrame {
 		// 로그인 정보에 따라 가게 이름을 가져온다.
 		String storeName = store.getStoreName();
 
-		/*
+		
 		 * // 가게 정보 출력 System.out.println("******* STORE INFORMATION *******"); Iterator
 		 * it = sd.displayStore(storeName).iterator(); while (it.hasNext()) {
 		 * System.out.println(it.next()); }
-		 */
+		 
 
 		// 현재 온/오프 여부 출력
 		String isStoreOpen = "";
@@ -136,7 +136,7 @@ public class AppManager extends JFrame {
 			}
 		}
 
-	}
+	}*/
 
 	public void createReview(String storeName) {
 

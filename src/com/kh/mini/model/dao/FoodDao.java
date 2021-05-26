@@ -15,22 +15,16 @@ public class FoodDao {
 
 	static {
 		
-		list.add(new Food("은행골", 1, "특상초밥", 20000));
-		list.add(new Food("은행골", 2, "특선초밥", 15000));
-		list.add(new Food("은행골", 3, "특미초밥", 10000));
-		list.add(new Food("은행골", 4, "연어초밥", 13000));
-		list.add(new Food("역삼갈비", 5, "김치짜글이", 12000));
-		list.add(new Food("역삼갈비", 6, "갈비탕", 11000));
+		list.add(new Food("은행골", "특상초밥", 20000));
+		list.add(new Food("은행골", "특선초밥", 15000));
+		list.add(new Food("은행골", "특미초밥", 10000));
+		list.add(new Food("은행골", "연어초밥", 13000));
+		list.add(new Food("역삼갈비", "김치짜글이", 12000));
+		list.add(new Food("역삼갈비", "갈비탕", 11000));
 		
 		System.out.println(list);
 	    System.out.println("메뉴 리스트 생성 완료!");
 
-	}
-
-	// 메뉴 리스트의 마지막 번호 얻어오기
-	public int getLastFoodNo() {
-
-		return list.get(list.size() - 1).getFoodNo();
 	}
 
 	// 1. 메뉴 추가
@@ -59,7 +53,7 @@ public class FoodDao {
 		return searchList;
 	}
 
-	// 3_1. 메뉴 한개 보기
+	/*// 3. 메뉴 한개 보기
 	public Food displayFood(int no) {
 		Food Food = null;
 		for (int i = 0; i < list.size(); i++) {
@@ -72,54 +66,20 @@ public class FoodDao {
 			}
 		}
 		return Food;
-	}
-
-	/*// 3_2. 조회수 올리기
-	public void upReadCount(int no) {
-		for (int i = 0; i < list.size(); i++) {
-			if (list.get(i).getFoodNo() == no) {
-				list.get(i).setReadCount(list.get(i).getReadCount() + 1);
-				// (기존의 조회수 + 1)을 조회수로써 수정한다.
-				break;
-			}
-		}
-
 	}*/
 
-	// 4. 메뉴 이름 수정
-	public void modifyTitle(int no, String name) {
+	// 4. 메뉴 삭제
+	public void deleteFood(String name) {
 
 		for (int i = 0; i < list.size(); i++) {
-			if (list.get(i).getFoodNo() == no) {
-				list.get(i).setFoodName(name);
-				break;
-			}
-		}
-	}
-
-	/*// 5. 게시글 내용 수정
-	public void modifyContent(int no, String content) {
-
-		for (int i = 0; i < list.size(); i++) {
-			if (list.get(i).getFoodNo() == no) {
-				list.get(i).setFoodContent(content);
-				break;
-			}
-		}
-	}*/
-
-	// 6. 메뉴 삭제
-	public void deleteFood(int no) {
-
-		for (int i = 0; i < list.size(); i++) {
-			if (list.get(i).getFoodNo() == no) {
+			if (list.get(i).getFoodName().equals(name)) {
 				list.remove(i);
 				break;
 			}
 		}
 	}
 
-	// 7. 메뉴 검색
+	// 5. 메뉴 검색
 	public ArrayList<Food> searchFood(String title) {
 
 		ArrayList<Food> searchList = new ArrayList<Food>();
