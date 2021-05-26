@@ -151,10 +151,10 @@ public class Reserve implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		if (arg0.getSource() == btn1) {
-			sd.clearReserveList();
 			ClickButton_reserve(arg0);
 			Store store = sd.displayReserveList().get(0);
 			store.setVisitCount(store.getVisitCount()+1);
+			sd.clearReserveList();
 			frm.setVisible(false);
 			new AppMenu();
 			return;

@@ -53,22 +53,7 @@ public class FoodDao {
 		return searchList;
 	}
 
-	/*// 3. 메뉴 한개 보기
-	public Food displayFood(int no) {
-		Food Food = null;
-		for (int i = 0; i < list.size(); i++) {
-			if (list.get(i).getFoodNo() == no) {
-				// 반복문을 돌리면서 list에 있는 Food객체들의 게시글 번호를 확인하고
-				// 사용자가 입력했던 번호랑 일치하는게 있다면
-				Food = list.get(i);
-				// 그 Food객체를 저장
-				break;
-			}
-		}
-		return Food;
-	}*/
-
-	// 4. 메뉴 삭제
+	// 3. 메뉴 삭제
 	public void deleteFood(String name) {
 
 		for (int i = 0; i < list.size(); i++) {
@@ -78,22 +63,5 @@ public class FoodDao {
 			}
 		}
 	}
-
-	// 5. 메뉴 검색
-	public ArrayList<Food> searchFood(String title) {
-
-		ArrayList<Food> searchList = new ArrayList<Food>();
-
-		for (int i = 0; i < list.size(); i++) {
-			if (list.get(i).getFoodName().contains(title)) {
-				searchList.add(list.get(i));
-
-				/*// 조회수 올리기
-				list.get(i).setReadCount(list.get(i).getReadCount() + 1);*/
-			}
-		}
-
-		return searchList;
-	}
-
+	
 }
