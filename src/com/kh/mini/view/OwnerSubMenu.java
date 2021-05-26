@@ -216,7 +216,7 @@ class AddMenu extends JFrame {
 		Iterator it = fd.displayAllList(storeName).iterator();
 		while (it.hasNext()) {
 			for (int i = 0; i < fd.displayAllList(storeName).size(); i++) {
-				lbArr[i] = new JLabel(it.next().toString());
+				lbArr[i] = new JLabel((i + 1) + ". " + it.next().toString());
 				lbArr[i].setBounds(x, y, width, height);
 				lbArr[i].setHorizontalAlignment(JLabel.CENTER);
 				this.add(lbArr[i]);
@@ -251,10 +251,11 @@ class AddMenu extends JFrame {
 				String foodName = tf1.getText();
 				int foodPrice = Integer.parseInt(tf2.getText());
 				System.out.println("추가한 메뉴 이름 : " + foodName + ", 가격 : " + foodPrice);
-				fd.writeFood(new Food(storeName, fd.getLastFoodNo() + 1, foodName, foodPrice));
+				fd.writeFood(new Food(storeName, foodName, foodPrice));
 				System.out.println(fd.displayAllList());
 
 				JOptionPane.showMessageDialog(getParent(), "메뉴 추가가 완료되었습니다.");
+				reloadPanel();
 
 			}
 		});
@@ -277,6 +278,13 @@ class AddMenu extends JFrame {
 
 		this.setVisible(true);
 
+	}
+	
+	protected void reloadPanel() {
+		this.setVisible(false);
+		new AddMenu();
+		return;
+		
 	}
 
 	protected void backToOwnerSubMenu() {
@@ -318,7 +326,7 @@ class DeleteMenu extends JFrame {
 		Iterator it = fd.displayAllList(storeName).iterator();
 		while (it.hasNext()) {
 			for (int i = 0; i < fd.displayAllList(storeName).size(); i++) {
-				lbArr[i] = new JLabel(it.next().toString());
+				lbArr[i] = new JLabel((i + 1) + ". " + it.next().toString());
 				lbArr[i].setBounds(x, y, width, height);
 				lbArr[i].setHorizontalAlignment(JLabel.CENTER);
 				this.add(lbArr[i]);
@@ -326,7 +334,7 @@ class DeleteMenu extends JFrame {
 			}
 		}
 
-		lb1 = new JLabel("삭제할 메뉴 번호 : ");
+		lb1 = new JLabel("삭제할 메뉴 이름 : ");
 		tf1 = new JTextField();
 		btn1 = new JButton("삭제하기");
 		btn2 = new JButton("돌아가기");
@@ -346,17 +354,33 @@ class DeleteMenu extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int foodNo = Integer.parseInt(tf1.getText());
-				System.out.println("삭제할 메뉴 번호 : " + foodNo);
-				int result = JOptionPane.showConfirmDialog(getParent(), "정말로 삭제하시겠습니까?", "메뉴 삭제 확인",
-						JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+				String foodName = tf1.getText();
+				System.out.println("삭제할 메뉴 이름 : " + foodName);
+				
+				for (int i = 0; i < fd.displayAllList(storeName).size(); i++) {
+					if (foodName.equals(fd.displayAllList(storeName).get(i).getFoodName())) {
+						int result = JOptionPane.showConfirmDialog(getParent(), "정말로 삭제하시겠습니까?", "메뉴 삭제 확인",
+								JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 
-				if (result == JOptionPane.YES_OPTION) {
-					fd.deleteFood(foodNo);
-					JOptionPane.showMessageDialog(getParent(), foodNo + "번 메뉴가 삭제되었습니다.");
-					System.out.println(fd.displayAllList());
-				} else {
-					System.out.println("메뉴 삭제 취소");
+						if (result == JOptionPane.YES_OPTION) {
+							fd.deleteFood(foodName);
+							JOptionPane.showMessageDialog(getParent(), foodName + " 메뉴가 삭제되었습니다.");
+							System.out.println(fd.displayAllList());
+							reloadPanel();
+
+						} else {
+							System.out.println("메뉴 삭제 취소");
+						}
+
+						return;
+					}
+				}
+				
+				for (int i = 0; i < fd.displayAllList(storeName).size(); i++) {
+					if (!foodName.equals(fd.displayAllList(storeName).get(i).getFoodName())) {
+						JOptionPane.showMessageDialog(getParent(), "없는 메뉴입니다.");
+						return;
+					}
 				}
 
 			}
@@ -377,6 +401,13 @@ class DeleteMenu extends JFrame {
 		this.add(btn2);
 
 		this.setVisible(true);
+	}
+
+	protected void reloadPanel() {
+		this.setVisible(false);
+		new DeleteMenu();
+		return;
+		
 	}
 
 	protected void backToOwnerSubMenu() {

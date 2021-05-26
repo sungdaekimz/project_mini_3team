@@ -223,13 +223,19 @@ public class StoreDao {
 
 	}
 
-	// 가게삭제 ??
+	// 가게삭제 
 	public void deleteStore_name(String deleteName) {
 
 		for (int i = 0; i < list.size(); i++) {
-			list.get(i).getStoreName().equals(deleteName);
+			if(list.get(i).getStoreName().equals(deleteName)) {
+<<<<<<< HEAD
 			list.remove(i);
 			break;
+=======
+				list.remove(i);
+				break;
+>>>>>>> branch 'master' of https://github.com/sungdaekimz/project_mini_3team.git
+			}
 		}
 	}
 
