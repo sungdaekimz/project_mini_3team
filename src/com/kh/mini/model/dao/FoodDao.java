@@ -60,17 +60,6 @@ public class FoodDao {
 		list.add(new Food("스시루", "평일점심특선", 9800));
 		list.add(new Food("스시루", "주말점심특선", 12000));
 		
-		list.add(new Food("우오하나", "사시미", 39000));
-		list.add(new Food("우오하나", "나베", 28000));
-		list.add(new Food("은행골", "특상초밥", 20000));
-		list.add(new Food("은행골", "특선초밥", 15000));
-		list.add(new Food("은행골", "특미초밥", 10000));
-		list.add(new Food("은행골", "연어초밥", 13000));
-		list.add(new Food("청담이상", "야끼소바", 21000));
-		list.add(new Food("청담이상", "타코와사비", 11000));
-		list.add(new Food("스시루", "평일점심특선", 9800));
-		list.add(new Food("스시루", "주말점심특선", 12000));
-		
 		list.add(new Food("호족반", "들기름메밀국수", 8800));
 		list.add(new Food("호족반", "아보카도한우육회", 24300));
 		list.add(new Food("역삼갈비", "김치짜글이", 12000));
