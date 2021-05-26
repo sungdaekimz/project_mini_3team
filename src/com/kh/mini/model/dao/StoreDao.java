@@ -228,13 +228,8 @@ public class StoreDao {
 
 		for (int i = 0; i < list.size(); i++) {
 			if(list.get(i).getStoreName().equals(deleteName)) {
-<<<<<<< HEAD
 			list.remove(i);
 			break;
-=======
-				list.remove(i);
-				break;
->>>>>>> branch 'master' of https://github.com/sungdaekimz/project_mini_3team.git
 			}
 		}
 	}
