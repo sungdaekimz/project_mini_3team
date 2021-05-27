@@ -137,7 +137,7 @@ public class AppManager extends JFrame {
 				if (ans1 == JOptionPane.YES_OPTION) {
 
 					for (int j = 0; j < list.size(); j++) {
-						if (list.get(j).getStoreName().equals(sName) && list.get(j).getVisitCount() == 0) { // 수정했음
+						if (list.get(j).getStoreName().equals(sName) && list.get(j).getVisitCount() == 0) { 
 
 							JOptionPane.showMessageDialog(null, sName + " 방문내역이 없습니다.\n다른 음식점을 이용하신 경우 이름을 다시 확인해주세요!");
 							setVisible(false);
