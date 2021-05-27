@@ -45,7 +45,7 @@ public class StoreDao {
 
 	}
 
-	// 리스트의 마지막 번호 얻어오기
+	// 리스트의 마지막 번호 얻어오기 
 	public int getLastStoreNo() {
 
 		return list.get(list.size() - 1).getStoreNo();
@@ -72,10 +72,7 @@ public class StoreDao {
 		Store Store = null;
 		for (int i = 0; i < list.size(); i++) {
 			if (list.get(i).getStoreName().contains(storeName)) {
-				// 반복문을 돌리면서 list에 있는 Store객체들의 게시글 번호를 확인하고
-				// 사용자가 입력했던 번호랑 일치하는게 이씨다면
 				Store = list.get(i);
-				// 그 Store객체를 저장
 				break;
 			}
 		}
